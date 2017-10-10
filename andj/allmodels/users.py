@@ -6,8 +6,6 @@ import bcrypt
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 # Create your USER models here.
-
-
 class UserManager(models.Manager):
     def valid_registration(self, user_info):
         messages = {

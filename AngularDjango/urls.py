@@ -17,5 +17,5 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     # BENNETT CHECK ME!!!!! 
-    url(r'api^', include('andj.urls'))
+    url(r'^', include('andj.urls'))
 ]
