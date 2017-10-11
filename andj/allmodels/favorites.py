@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
-from .users import User
-from .places import Place
+from users import User
+from places import Place
 
 class Favorite(models.Model):
     user = models.ForeignKey(User, related_name="favorites")

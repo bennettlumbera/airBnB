@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
-from .users import Guest
-from .users import Host
+from users import Guest
+from users import Host
 
 class Message(models.Model):
     guest = models.ForeignKey(Guest, related_name="guest_messages")

@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from .users import Host
+from users import Host
 
 # Create your models here.
 class Place(models.Model):

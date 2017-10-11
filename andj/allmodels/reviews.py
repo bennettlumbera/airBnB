@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
-from .trips import Trip
+from trips import Trip
+
 # Create your models here.
 class Review(models.Model):
     trip = models.ForeignKey(Trip, related_name="trip_reviews")

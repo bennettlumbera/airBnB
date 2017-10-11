@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
-from .users import Guest
-from .places import Place
+from users import Guest
+from places import Place
 
 # Create your models here.
 class Trip(models.Model):

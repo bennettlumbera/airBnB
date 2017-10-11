@@ -25,15 +25,13 @@ class UserManager(models.Manager):
             messages["first_name"].append("First name must be all letters.")
             valid = False
         if len(user_info['first_name']) < 2:
-            messages["first_name"].append(
-                "First name must be 2 or more characters long.")
+            messages["first_name"].append("First name must be 2 or more characters long.")
             valid = False
         if not user_info['last_name'].isalpha():
             messages["last_name"].append("Last name must be all letters.")
             valid = False
         if len(user_info['last_name']) < 2:
-            messages["last_name"].append(
-                "Last name must be 2 or more characters long.")
+            messages["last_name"].append("Last name must be 2 or more characters long.")
             valid = False
         if not EMAIL_REGEX.match(user_info['email']):
             messages['email'].append("Email is not a valid email.")
@@ -57,12 +55,10 @@ class UserManager(models.Manager):
             messages['city'].append("City must be 2 or more characters long.")
             valid = False
         if len(user_info['country']) < 2:
-            messages['country'].append(
-                "Country must be 2 or more characters long.")
+            messages['country'].append("Country must be 2 or more characters long.")
             valid = False
         if len(user_info['zip_code']) < 5:
-            messages['zip_code'].append(
-                "Zip code must be at least 5 characters.")
+            messages['zip_code'].append("Zip code must be at least 5 characters.")
             valid = False
         if not user_info['zip_code'].isdigit():
             messages['zip_code'].append("Zip code must be all digits.")
