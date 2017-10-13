@@ -5,6 +5,7 @@ export class User {
         public dob: Date = null, 
         public email: string = '',
         public password: string = '',
+        // public passwordConfirm: string = '',
         public phone: string = '',
         public city: string = '',
         public state: string = '',
