@@ -16,5 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 
 urlpatterns = [
-    url(r'^api/users/', include('andj.urls')),
+    url(r'^api/users/', include('member.urls')),
+    url(r'^api/favorites/', include('favorite.urls')),
+    url(r'^api/messages/', include('message.urls')),
+    url(r'^api/places/', include('place.urls')),
+    url(r'^api/reviews/', include('review.urls')),
+    url(r'^api/trips/', include('trip.urls'))
 ]
