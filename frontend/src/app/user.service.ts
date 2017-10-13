@@ -9,7 +9,7 @@ export class UserService {
   constructor(private _http: Http) { }
   regAttempt(user) {
     console.log("HIT USER SERVICE")
-    return this._http.post('/api/users/register', user)
+    return this._http.post('http://127.0.0.1:8000/api/users/register', user)
     .map(data => data.json())
     .toPromise();
   }
