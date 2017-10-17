@@ -24,6 +24,6 @@ class Place(models.Model):
 class Place_Image(models.Model):
     place = models.ForeignKey(Place, related_name="images")
     caption = models.CharField(max_length=40)
-    image = models.ImageField(upload_to="place_images/", blank=False, null=False)
+    # image = models.ImageField(upload_to="place_images/", blank=False, null=False)
     updated_at = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now=True)

@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from "./user.service";
-import { HttpModule } from '@angular/http';
+import { HttpModule, XSRFStrategy, CookieXSRFStrategy } from '@angular/http';
 import { NavComponent } from './nav/nav.component';
 import { MapComponent } from './map/map.component';
 import { PropertyTileComponent } from './property-tile/property-tile.component';
@@ -14,6 +14,12 @@ import { BookingRequestComponent } from './booking-request/booking-request.compo
 import { ProfileComponent } from './profile/profile.component'; 
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { HostFormComponent } from './host-form/host-form.component';
+import { CommonModule }   from '@angular/common';
+// import { RequestOptions } from '@angular/http';
+// import {HttpClientModule} from '@angular/common/http';
+// import { HttpHeaders } from '@angular/common/http';
+// import {Http, Headers, RequestOptions} from '@angular/http';
+
 
 
 
@@ -36,8 +42,19 @@ import { HostFormComponent } from './host-form/host-form.component';
     HttpModule,
     FormsModule,
     MyDateRangePickerModule,
+
+    // HttpClientModule,
+    // HttpHeaders,
+    // Http,
+    // Headers,
+
   ],
-  providers: [UserService],
+  providers: [UserService,
+    { provide: XSRFStrategy, useValue: new CookieXSRFStrategy('myCookieName', 'My-Header-Name')},
+
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+ }
