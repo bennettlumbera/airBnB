@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user'
 import { UserService } from '../user.service';
 import 'rxjs/add/operator/toPromise';
+
 import { Router } from '@angular/router'
 import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
 // import { IMyDate } from "./my-date.interface";
@@ -79,16 +80,16 @@ endDate: null};
         // } else {
           this._userService.regAttempt(this.user)
             .then(data => {
-              console.log("data", data)
-              if (data.emailError) {
-                this.regErrors.push(data.emailError);
-                this.user = new User;
-                this.pwConfirm = '';
-              } else {
-                // this.currUser = data;
-                this._router.navigateByUrl('/choose_topics');             
-              }
-           
+              console.log("DATA RESPONSE COMING BACK FROM SERVER")
+              // if (data.emailError) {
+              //   this.regErrors.push(data.emailError);
+              //   this.user = new User;
+              //   this.pwConfirm = '';
+              // } else {
+              //   // this.currUser = data;
+              //   this._router.navigateByUrl('/choose_topics');             
+              // }
+              this._router.navigateByUrl('/host/register')
             })
             .catch(err => console.log(err));      
         

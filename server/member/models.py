@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+
 import re
 import bcrypt
 
@@ -21,62 +22,67 @@ class UserManager(models.Manager):
             'zip_code': [],
         }
         valid = True
-        if not user_info['first_name'].isalpha():
+        if not user_info.get('first_name', "").isalpha():
             messages["first_name"].append("First name must be all letters.")
             valid = False
-        if len(user_info['first_name']) < 2:
+        if len(user_info.get('first_name', "")) < 2:
             messages["first_name"].append("First name must be 2 or more characters long.")
             valid = False
-        if not user_info['last_name'].isalpha():
+        if not user_info.get('last_name', '').isalpha():
             messages["last_name"].append("Last name must be all letters.")
             valid = False
-        if len(user_info['last_name']) < 2:
+        if len(user_info.get('last_name', '')) < 2:
             messages["last_name"].append("Last name must be 2 or more characters long.")
             valid = False
-        if not EMAIL_REGEX.match(user_info['email']):
+        if not EMAIL_REGEX.match(user_info.get('email', '')):
             messages['email'].append("Email is not a valid email.")
             valid = False
-        if User.objects.filter(email=user_info['email']):
+        if User.objects.filter(email=user_info.get('email', '')):
             messages['email'].append("This email already exists.")
             valid = False
-        if len(user_info['birthday']) < 6:
+        if len(user_info.get('birthday', '')) < 6:
             messages['birthday'].append("Birthday must be 6 characters long.")
             valid = False
-        if len(user_info['password']) < 7:
+        if len(user_info.get('password', '')) < 7:
             messages['password'].append("Password is too short.")
             valid = False
-        if user_info['password'] != user_info['confirm_password']:
+        if user_info.get('password', '') != user_info.get('confirm_password', ''):
             messages['password'].append("Passwords do not match.")
             valid = False
-        if not user_info['phone_number'].isdigit():
+        if not user_info.get('phone_number', '').isdigit():
             messages['phone_number'].append("Phone number must be all digits.")
             valid = False
-        if len(user_info['city']) < 2:
+        if len(user_info.get('city', '')) < 2:
             messages['city'].append("City must be 2 or more characters long.")
             valid = False
-        if len(user_info['country']) < 2:
+        if len(user_info.get('country', '')) < 2:
             messages['country'].append(
                 "Country must be 2 or more characters long.")
             valid = False
-        if len(user_info['zip_code']) < 5:
+        if len(user_info.get('zip_code', '')) < 5:
             messages['zip_code'].append("Zip code must be at least 5 characters.")
             valid = False
-        if not user_info['zip_code'].isdigit():
+        if not user_info.get('zip_code', '').isdigit():
             messages['zip_code'].append("Zip code must be all digits.")
         if valid == True:
-            hashed = bcrypt.hashpw(user_info['password'].encode(), bcrypt.gensalt())
+            hashed = bcrypt.hashpw(user_info.get('password', '')).encode(), bcrypt.gensalt()
             user = User.objects.create(
-                first_name=user_info['first_name'],
-                last_name=user_info['last_name'],
-                birthday=user_info['birthday'],
-                email=user_info['email'],
+                first_name=user_info.get('first_name', ''),
+                last_name=user_info.get('last_name', ''),
+                birthday=user_info.get('birthday', ''),
+                email=user_info('email', ''),
                 password=hashed,
-                phone_number=user_info['phone_number'],
-                country=user_info['country'],
-                zip_code=user_info['zip_code']
+                phone_number=user_info.get('phone', ''),
+                country=user_info.get('country', ''),
+                zip_code=user_info.get('zip', '')
             )
             user.save()
-            return { 'user': { 'first_name': user_info['first_name'], 'id': user.id } }
+            return {
+                'user': {
+                    'first_name': user_info.get('first_name', ''),
+                    'id': user.id
+                    }
+            }
         else:
             return {'messages': messages}
 
