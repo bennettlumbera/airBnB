@@ -13,12 +13,9 @@ export class UserService {
   constructor(private _http: Http) { }
   regAttempt(user) {
     console.log("HIT USER SERVICE")
-
+    console.log(user)
     return this._http.post(this.server_route +'api/users/register', user)
-    // .map(data => data.json())
-    .map(function(data) {
-      console.log(data)
-    })
+    .map(data => data.json())
     .toPromise();
   }
   loginAttempt(user) {

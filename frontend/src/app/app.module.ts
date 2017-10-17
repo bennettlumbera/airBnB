@@ -50,7 +50,7 @@ import { CommonModule }   from '@angular/common';
 
   ],
   providers: [UserService,
-    { provide: XSRFStrategy, useValue: new CookieXSRFStrategy('myCookieName', 'My-Header-Name')},
+    
 
   ],
   bootstrap: [AppComponent]

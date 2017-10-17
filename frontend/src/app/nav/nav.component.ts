@@ -78,9 +78,11 @@ endDate: null};
         //   this.user = new User;
         //   this.pwConfirm = '';
         // } else {
+          console.log(this.user)
           this._userService.regAttempt(this.user)
             .then(data => {
               console.log("DATA RESPONSE COMING BACK FROM SERVER")
+              console.log(data)
               // if (data.emailError) {
               //   this.regErrors.push(data.emailError);
               //   this.user = new User;
