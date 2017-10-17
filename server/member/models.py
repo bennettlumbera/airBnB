@@ -128,8 +128,6 @@ class User(models.Model):
     birthday = models.DateField()
     password = models.CharField(max_length=256)
     phone_number = models.CharField(max_length=10)
-    city = models.CharField(max_length=30)
-    state = models.CharField(max_length=2)
     country = models.CharField(max_length=30)
     zip_code = models.IntegerField()
     # profile_image = models.ImageField(upload_to="profile_pic/", blank=True, null=True)

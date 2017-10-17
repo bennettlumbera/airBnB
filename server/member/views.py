@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from member.models import User
 from place.models import Place
+
 # Create your views here.
 
 @csrf_exempt
