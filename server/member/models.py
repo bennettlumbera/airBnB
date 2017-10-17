@@ -72,18 +72,11 @@ class UserManager(models.Manager):
                 email=user_info['email'],
                 password=hashed,
                 phone_number=user_info['phone_number'],
-                city=user_info['city'],
-                state=user_info['state'],
                 country=user_info['country'],
                 zip_code=user_info['zip_code']
             )
             user.save()
-            return {
-                'user': {
-                    'first_name': user_info['first_name'],
-                    'id': user.id
-                    }
-            }
+            return { 'user': { 'first_name': user_info['first_name'], 'id': user.id } }
         else:
             return {'messages': messages}
 
@@ -123,11 +116,9 @@ class User(models.Model):
     birthday = models.DateTimeField(max_length=8)
     password = models.CharField(max_length=256)
     phone_number = models.CharField(max_length=10)
-    city = models.CharField(max_length=30)
-    state = models.CharField(max_length=2)
     country = models.CharField(max_length=30)
     zip_code = models.IntegerField()
-    profile_image = models.ImageField(upload_to="profile_pic/", blank=True, null=True)
+    # profile_image = models.ImageField(upload_to="profile_pic/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     UserManager = UserManager()
