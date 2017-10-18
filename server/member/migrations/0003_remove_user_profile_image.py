@@ -8,12 +8,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('place', '0002_auto_20171012_1532'),
+        ('member', '0002_auto_20171012_1532'),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='place_image',
-            name='image',
+            model_name='user',
+            name='profile_image',
         ),
     ]

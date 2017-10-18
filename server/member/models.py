@@ -3,6 +3,9 @@ from django.db import models
 import json
 import re
 import bcrypt
+# from datetime import datetime, date
+
+import datetime
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -17,22 +20,27 @@ class UserManager(models.Manager):
             'birthday': [],
             'password': [],
             'phone': [],
-            'city': [],
             'country': [],
             'zip': [],
         }
         valid = True
-        if not user_info.get('firstName', '').isalpha():
-            messages["firstName"].append("First name must be all letters.")
+        # print user_info.get("dob", "")
+        # dt_format = "%Y-%m-%d"
+        # birthday = user_info.get("dob", "")
+        # user_birthday = datetime.datetime.strptime(birthday, dt_format).date()
+        if not user_info.get('firstName', "").isalpha():
+            messages["first_name"].append("First name must be all letters.")
+            messages["first_name"].appned(user_info)
+            # messages["first_name"].append(user_info.get('first_name', ""))
             valid = False
         if len(user_info.get('firstName', "")) < 2:
-            messages["firstName"].append("First name must be 2 or more characters long.")
+            messages["first_name"].append("First name must be 2 or more characters long.")
             valid = False
         if not user_info.get('lastName', '').isalpha():
-            messages["lastName"].append("Last name must be all letters.")
+            messages["last_name"].append("Last name must be all letters.")
             valid = False
         if len(user_info.get('lastName', '')) < 2:
-            messages["lastName"].append("Last name must be 2 or more characters long.")
+            messages["last_name"].append("Last name must be 2 or more characters long.")
             valid = False
         if not EMAIL_REGEX.match(user_info.get('email', '')):
             messages['email'].append("Email is not a valid email.")
@@ -40,9 +48,9 @@ class UserManager(models.Manager):
         if User.objects.filter(email=user_info.get('email', '')):
             messages['email'].append("This email already exists.")
             valid = False
-        if len(user_info.get('dob', '')) < 6:
-            messages['birthday'].append("Birthday must be 6 characters long.")
-            valid = False
+        # if len(user_info.get('birthday', '')) < 6:
+        #     messages['birthday'].append("Birthday must be 6 characters long.")
+        #     valid = False
         if len(user_info.get('password', '')) < 7:
             messages['password'].append("Password is too short.")
             valid = False
@@ -50,7 +58,8 @@ class UserManager(models.Manager):
             messages['password'].append("Passwords do not match.")
             valid = False
         if not user_info.get('phone', '').isdigit():
-            messages['phone_number'].append("Phone number must be all digits.")
+            messages['phone'].append("Phone number must be all digits.")
+            print user_info.get('phone', '')
             valid = False
         if len(user_info.get('country', '')) < 2:
             messages['country'].append("Country must be 2 or more characters long.")
@@ -118,8 +127,8 @@ class User(models.Model):
     # profile_image = models.ImageField(upload_to="profile_pic/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # UserManager = UserManager()
     objects = UserManager()
-    # objects = models.Manager()
 
 
 class Guest(models.Model):

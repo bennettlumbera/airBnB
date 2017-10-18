@@ -16,11 +16,12 @@ def index(request):
     print "REQUEST ISSSSSS:"
     print request.body
     registration = User.objects.valid_registration(request.body)
+    print registration
     if 'user' in registration:
-        user = {
-            'first_name': registration['user']['first_name'],
-            'user_id': registration['user']['id'],
-        }
+        # user = {
+        #     'first_name': registration['user']['first_name'],
+        #     'user_id': registration['user']['id'],
+        # }
         return JsonResponse(user)
     else:
         return JsonResponse(registration['messages'])    
