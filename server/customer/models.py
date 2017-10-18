@@ -10,6 +10,8 @@ import datetime
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 # Create your models here.
+
+
 class UserManager(models.Manager):
     def valid_registration(self, user_info):
         user_info = json.loads(user_info)
@@ -34,13 +36,15 @@ class UserManager(models.Manager):
             # messages["first_name"].append(user_info.get('first_name', ""))
             valid = False
         if len(user_info.get('firstName', "")) < 2:
-            messages["first_name"].append("First name must be 2 or more characters long.")
+            messages["first_name"].append(
+                "First name must be 2 or more characters long.")
             valid = False
         if not user_info.get('lastName', '').isalpha():
             messages["last_name"].append("Last name must be all letters.")
             valid = False
         if len(user_info.get('lastName', '')) < 2:
-            messages["last_name"].append("Last name must be 2 or more characters long.")
+            messages["last_name"].append(
+                "Last name must be 2 or more characters long.")
             valid = False
         if not EMAIL_REGEX.match(user_info.get('email', '')):
             messages['email'].append("Email is not a valid email.")
@@ -62,7 +66,8 @@ class UserManager(models.Manager):
             print user_info.get('phone', '')
             valid = False
         if len(user_info.get('country', '')) < 2:
-            messages['country'].append("Country must be 2 or more characters long.")
+            messages['country'].append(
+                "Country must be 2 or more characters long.")
             valid = False
         if len(user_info.get('zip', '')) < 5:
             messages['zip'].append("Zip code must be at least 5 characters.")
@@ -70,7 +75,8 @@ class UserManager(models.Manager):
         if not user_info.get('zip', '').isdigit():
             messages['zip'].append("Zip code must be all digits.")
         if valid == True:
-            hashed = bcrypt.hashpw(user_info.get('password', '').encode(), bcrypt.gensalt())
+            hashed = bcrypt.hashpw(user_info.get(
+                'password', '').encode(), bcrypt.gensalt())
             user = User.objects.create(
                 first_name=user_info.get('firstName', ''),
                 last_name=user_info.get('lastName', ''),
@@ -82,7 +88,7 @@ class UserManager(models.Manager):
                 zip_code=user_info.get('zip', '')
             )
             user.save()
-            return {'user' : user}
+            return {'user': user}
         else:
             return {'messages': messages}
 
@@ -119,7 +125,7 @@ class User(models.Model):
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
     email = models.EmailField()
-    birthday = models.DateField(default=datetime.date.today)
+    birthday = models.DateField()
     password = models.CharField(max_length=256)
     phone_number = models.CharField(max_length=10)
     country = models.CharField(max_length=30)

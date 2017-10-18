@@ -7,8 +7,6 @@ export class User {
         public password: string = '',
         // public passwordConfirm: string = '',
         public phone: string = '',
-        public city: string = '',
-        public state: string = '',
         public zip: string = '',
         public country: string = '',
         public _id = null,
