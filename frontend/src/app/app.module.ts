@@ -49,7 +49,11 @@ import { CommonModule }   from '@angular/common';
     // Headers,
 
   ],
-  providers: [UserService],
+
+  providers: [UserService,
+    
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

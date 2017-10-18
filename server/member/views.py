@@ -11,15 +11,21 @@ from member.models import User
 from place.models import Place
 
 # Create your views here.
+
+@csrf_exempt
 def index(request):
     print "REQUEST ISSSSSS:"
-    print request
-    registration = User.UserManager.valid_registration(request.POST)
+    print request.body
+    
+    registration = User.objects.valid_registration(request.body)
+
+    print registration
+    
     if 'user' in registration:
-        user = {
-            'first_name': registration['user']['first_name'],
-            'user_id': registration['user']['id'],
-        }
+        # user = {
+        #     'first_name': registration['user']['first_name'],
+        #     'user_id': registration['user']['id'],
+        # }
         return JsonResponse(user)
     else:
         return JsonResponse(registration['messages'])    
