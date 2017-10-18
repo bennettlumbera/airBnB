@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { PropertyService } from './property.service';
 import { FormsModule, ReactiveFormsModule, }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { HostFormComponent } from './host-form/host-form.component';
 import { CommonModule }   from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
+
 // import { RequestOptions } from '@angular/http';
 // import {HttpClientModule} from '@angular/common/http';
 // import { HttpHeaders } from '@angular/common/http';
@@ -42,6 +45,11 @@ import { CommonModule }   from '@angular/common';
     HttpModule,
     FormsModule,
     MyDateRangePickerModule,
+    AgmCoreModule.forRoot({
+      
+           apiKey: 'AIzaSyBWV7-vUoEKBzioYvs4-EDWB5rt8QJhsiw'
+      
+         })
 
     // HttpClientModule,
     // HttpHeaders,
@@ -50,7 +58,7 @@ import { CommonModule }   from '@angular/common';
 
   ],
 
-  providers: [UserService,
+  providers: [UserService, PropertyService,
     
 
   ],

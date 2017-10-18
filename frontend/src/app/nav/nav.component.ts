@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user'
 import { UserService } from '../user.service';
 import 'rxjs/add/operator/toPromise';
+import { PropertyService } from '../property.service';
 
 import { Router } from '@angular/router'
 import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
@@ -14,7 +15,7 @@ import { DatePipe } from '@angular/common';
 })
 export class NavComponent implements OnInit {
 
-
+  searchParams;
   currYear = (new Date()).getFullYear();
   currMonth = (new Date()).getMonth();
   currDay = (new Date()).getDate()
@@ -28,7 +29,7 @@ export class NavComponent implements OnInit {
     },
     maxYear: new Date().getFullYear()+2,
     
-
+    
   
 };
 
@@ -37,7 +38,7 @@ export class NavComponent implements OnInit {
 private model: Object = {beginDate: null,
 endDate: null};
   
-    constructor(private _userService: UserService, private _router: Router) { }
+    constructor(private _userService: UserService, private _router: Router, private _propertyService: PropertyService) { }
   
     ngOnInit() {
 
@@ -115,5 +116,9 @@ endDate: null};
             }
           }).catch(err => console.log(err));
     
+      }
+
+      search(){
+        this._propertyService.searchProperties(this.searchParams)
       }
     }

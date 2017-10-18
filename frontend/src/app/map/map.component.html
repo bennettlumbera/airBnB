@@ -1,3 +1,16 @@
-<p>
-  map works!
-</p>
+
+<div class = "container">
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWV7-vUoEKBzioYvs4-EDWB5rt8QJhsiw&callback=initMap"
+      async defer></script>
+      <p>
+          map works!
+          api key = AIzaSyBWV7-vUoEKBzioYvs4-EDWB5rt8QJhsiw
+        </p>
+    <!-- <div id="map"></div> -->
+    <agm-map [latitude]="lat" [longitude]="lng">
+        
+         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        
+       </agm-map>
+  </div>
+ 
