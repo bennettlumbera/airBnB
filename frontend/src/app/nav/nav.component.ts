@@ -80,7 +80,7 @@ endDate: null};
         // } else {
           this._userService.regAttempt(this.user)
             .then(data => {
-              console.log("DATA RESPONSE COMING BACK FROM SERVER")
+              console.log(data)
               // if (data.emailError) {
               //   this.regErrors.push(data.emailError);
               //   this.user = new User;

@@ -15,7 +15,7 @@ export class UserService {
     console.log("HIT USER SERVICE")
 
     return this._http.post(this.server_route +'api/users/register', user)
-    // .map(data => data.json())
+    .map(data => data.json())
     .map(function(data) {
       console.log(data)
     })
