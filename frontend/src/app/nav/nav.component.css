@@ -2,5 +2,23 @@
     color: red;
 }
 #navBarSearchForm{
-    width:430px !important
+    width:530px;
+}
+#ng4geo{
+    height: 20px;
+    border-radius: 5px;
+}
+#guestOptions{
+    height: 45px;
+    width: 104px;
+    margin-left:-23px;
+}
+#search_places{
+    border-radius: 5px !important;
+}
+.ng-untouched ng-pristine ng-valid{
+    border-radius: 5px !important;
+}
+.button-included[_ngcontent-c2] input[_ngcontent-c2]{
+    border-radius: 5px;
 }

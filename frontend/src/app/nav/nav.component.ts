@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer, ElementRef, ViewChild  } from '@angular/core';
 import { User } from '../user'
 import { UserService } from '../user.service';
 import 'rxjs/add/operator/toPromise';
@@ -11,14 +11,23 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
+  // template: '<ng4geo-autocomplete (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>'
 })
 export class NavComponent implements OnInit {
-
+  
+  @ViewChild('fileInput') fileInput:ElementRef;
+  @ViewChild('dateInput') dateInput: ElementRef;
   searchParams;
   currYear = (new Date()).getFullYear();
   currMonth = (new Date()).getMonth();
-  currDay = (new Date()).getDate()
+  currDay = (new Date()).getDate();
+  todaysDate = this.currYear +'/'+this.currMonth+'/'+this.currDay
+
+
+  autoCompleteCallback1(selectedData:any) {
+
+  }
 
   private myDateRangePickerOptions: IMyDrpOptions = {
     dateFormat: 'mmm dd yyyy',
@@ -28,6 +37,7 @@ export class NavComponent implements OnInit {
       day: new Date().getDate()-1,
     },
     maxYear: new Date().getFullYear()+2,
+    height: '45px',
     
     
   
@@ -38,10 +48,10 @@ export class NavComponent implements OnInit {
 private model: Object = {beginDate: null,
 endDate: null};
   
-    constructor(private _userService: UserService, private _router: Router, private _propertyService: PropertyService) { }
+    constructor(private _userService: UserService, private _router: Router, private _propertyService: PropertyService, private _renderer: Renderer) { }
   
     ngOnInit() {
-
+      // this.visible = true
     }
     user = new User();
     
@@ -83,7 +93,21 @@ endDate: null};
           this._userService.regAttempt(this.user)
             .then(data => {
               console.log("DATA RESPONSE COMING BACK FROM SERVER")
-              console.log(data)
+              console.log(data['email'])
+
+              if(data['email']){
+                this.regErrors.push("An account is already registered to this email")
+              }
+              else{
+                let event = new MouseEvent('click', {bubbles: true});
+                this._renderer.invokeElementMethod(
+                  this.fileInput.nativeElement, 'dispatchEvent', [event]
+                )
+                
+              }
+
+
+              
               // if (data.emailError) {
               //   this.regErrors.push(data.emailError);
               //   this.user = new User;
@@ -93,10 +117,12 @@ endDate: null};
               //   this._router.navigateByUrl('/choose_topics');             
               // }
               this._router.navigateByUrl('/host/register')
+              
             })
             .catch(err => console.log(err));      
         
       }
+   
     
       attemptedUser = {
         email: '',
@@ -106,6 +132,7 @@ endDate: null};
       loginError;
     
       loginAttempt() {
+        console.log("HIT LOGIN AT COMPONENT.TS")
         this._userService.loginAttempt(this.attemptedUser)
           .then(resData => {
             if (resData.error) {
