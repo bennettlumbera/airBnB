@@ -20,6 +20,7 @@ export class UserService {
   }
   loginAttempt(user) {
     console.log("HIT LOGIN AT USER SERVICE")
+    console.log(user)
     return this._http.post(this.server_route+'api/users/login', user)
     .map(data => data.json())
     .toPromise();
