@@ -130,7 +130,6 @@ class User(models.Model):
     # UserManager = UserManager()
     objects = UserManager()
 
-
 class Guest(models.Model):
     user = models.ForeignKey(User, related_name="user_guest")
     about_me = models.TextField()

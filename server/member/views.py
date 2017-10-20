@@ -19,8 +19,8 @@ def index(request):
     print registration
     if 'user' in registration:
         user = {
-            'first_name': registration['user']['first_name'],
-            'user_id': registration['user']['id'],
+            'first_name': registration['user']['firstName'],
+            'user_id': registration['user']['id']
         }
         return JsonResponse(user)
     else:

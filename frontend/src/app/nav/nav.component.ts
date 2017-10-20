@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   currMonth = (new Date()).getMonth();
   currDay = (new Date()).getDate()
 
+  
   private myDateRangePickerOptions: IMyDrpOptions = {
     dateFormat: 'mmm dd yyyy',
     disableUntil: {
