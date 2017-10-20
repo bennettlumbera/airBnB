@@ -82,6 +82,8 @@ class UserManager(models.Manager):
                 zip_code=user_info.get('zip', '')
             )
             user.save()
+
+            # new_user = User.objects.filter(id=user.id)
             return {'user' : user}
         else:
             return {'messages': messages}
@@ -91,12 +93,15 @@ class UserManager(models.Manager):
             'email': [],
             'password': []
         }
+        user_info = json.loads(user_info)
+        print "USER INFO!!!!!!!!!!!!!!!!!!!!!"
+        print user_info
         valid = True
-        if not EMAIL_REGEX.match(user_info['email']):
-            messages['email'].append("Email is not a valid email.")
-            valid = False
-        if User.objects.filter(email=user_info['email']):
-            hashed = User.objects.get(email=user_info['email']).password
+        # if not EMAIL_REGEX.match(user_info['email']):
+        #     messages['email'].append("Email is not a valid email.")
+        #     valid = False
+        if User.objects.filter(email=user_info.get('email', '')):
+            hashed = User.objects.get(email=user_info.get('email', '')).password
             hashed = hashed.encode('utf-8')
             password = user_info['password']
             password = password.encode('utf-8')

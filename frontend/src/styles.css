@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 .container{
-    width: 90%
+    width: 90%;
+    overflow: scroll;
 }
