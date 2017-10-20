@@ -17,6 +17,8 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
 import { HostFormComponent } from './host-form/host-form.component';
 import { CommonModule }   from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
+import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
+
 
 // import { RequestOptions } from '@angular/http';
 // import {HttpClientModule} from '@angular/common/http';
@@ -49,12 +51,8 @@ import { AgmCoreModule } from '@agm/core';
       
            apiKey: 'AIzaSyBWV7-vUoEKBzioYvs4-EDWB5rt8QJhsiw'
       
-         })
-
-    // HttpClientModule,
-    // HttpHeaders,
-    // Http,
-    // Headers,
+         }),
+    Ng4GeoautocompleteModule.forRoot(),
 
   ],
 

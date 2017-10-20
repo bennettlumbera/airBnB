@@ -19,7 +19,8 @@ export class UserService {
     .toPromise();
   }
   loginAttempt(user) {
-    return this._http.post('/api/login', user)
+    console.log("HIT LOGIN AT USER SERVICE")
+    return this._http.post(this.server_route+'api/users/login', user)
     .map(data => data.json())
     .toPromise();
   }
