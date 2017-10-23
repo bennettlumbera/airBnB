@@ -1,42 +1,120 @@
 <div class="container">
   <h1>Become an AirBnB Host!</h1>
-  <h3>
-    <small class="text-muted">Step 1</small>
-  </h3>
-  <h3>What kind of place do you have?</h3>
   <form style="width: 50%">
-    <div class="form-group">
-      <select class="form-control">
-        <option value="entire">Entire Place</option>
-        <option value="private">Private Room</option>
-        <option value="shared">Shared Room</option>
-      </select>
+    <div *ngIf="form1Visible==true" id="form1">
+      <h3>
+        <small class="text-muted">Step 1</small>
+      </h3>
+      <h3>What kind of place do you have?</h3>
+      <div class="form-group">
+        <select class="form-control">
+          <option value="entire">Entire Place</option>
+          <option value="private">Private Room</option>
+          <option value="shared">Shared Room</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="form-control">
+          <option value="1">for 1 guest</option>
+          <option value="2">for 2 guests</option>
+          <option value="3">for 3 guests</option>
+          <option value="4">for 4 guests</option>
+          <option value="5">for 5 guests</option>
+          <option value="6">for 6 guests</option>
+          <option value="7">for 7 guests</option>
+          <option value="8">for 8 guests</option>
+          <option value="9">for 9 guests</option>
+          <option value="10">for 10 guests</option>
+          <option value="11">for 11 guests</option>
+          <option value="12">for 12 guests</option>
+          <option value="13">for 13 guests</option>
+          <option value="14">for 14 guests</option>
+          <option value="15">for 15 guests</option>
+          <option value="16">for 16 guests</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Chicago, IL, USA" class="form-control">
+      </div>
+      <button class="btn btn-default" type="button" (click)="view2()">Next</button>
     </div>
-    <div class="form-group">
-      <select class="form-control">
-        <option value="1">for 1 guest</option>
-        <option value="2">for 2 guests</option>
-        <option value="3">for 3 guests</option>
-        <option value="4">for 4 guests</option>
-        <option value="5">for 5 guests</option>
-        <option value="6">for 6 guests</option>
-        <option value="7">for 7 guests</option>
-        <option value="8">for 8 guests</option>
-        <option value="9">for 9 guests</option>
-        <option value="10">for 10 guests</option>
-        <option value="11">for 11 guests</option>
-        <option value="12">for 12 guests</option>
-        <option value="13">for 13 guests</option>
-        <option value="14">for 14 guests</option>
-        <option value="15">for 15 guests</option>
-        <option value="16">for 16 guests</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <input type="text" placeholder="Chicago, IL, USA" class="form-control">
-    </div>
+    <div *ngIf="form2Visible==true" id="form2">
+      <h3>
+        <small class="text-muted">Step 1</small>
+      </h3>
+      <h3>What kind of place are you listing?</h3>
 
-    <input class="btn btn-default" type="submit" value="Next">
+      <div class="form-group">
+        <label class="text-muted">Is this listing a home, hotel, or something else?</label>
+        <select class="form-control">
 
+          <option value="home">Home</option>
+          <option value="hotel">Hotel</option>
+          <option value="something_else">Something Else</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="text-muted">What type of property is this?</label>
+        <select class="form-control">
+          <option value="" selected>Select one</option>
+          <option value="Apartment">Apartment</option>
+          <option value="Condominium">Condominium</option>
+          <option value="Guesthouse">Guesthouse</option>
+          <option value="House">In-law</option>
+          <option value="Guest Suite">Guest Suite</option>
+          <option value="Townhouse">Townhouse</option>
+          <option value="Vacation Home">Vacation Home</option>
+          <option value="Boat">Boat</option>
+          <option value="Bungalow">Bungalow</option>
+          <option value="Cabin">Cabin</option>
+          <option value="Castle">Castle</option>
+          <option value="Cave">Cave</option>
+          <option value="Chalet">Chalet</option>
+          <option value="Dorm">Dorm</option>
+          <option value="Earth House">Earth House</option>
+          <option value="Hut">Hut</option>
+          <option value="Igloo">Igloo</option>
+          <option value="Island">Island</option>
+          <option value="Lighthouse">Lighthouse</option>
+          <option value="Loft">Loft</option>
+          <option value="Plane">Plane</option>
+          <option value="Camper/RV">Camper/RV</option>
+          <option value="Tent">Tent</option>
+          <option value="Tipi">Tipi</option>
+          <option value="Train">Train</option>
+          <option value="Treehouse">Treehouse</option>
+          <option value="Villa">Villa</option>
+          <option value="Yurt">Yurt</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="text-muted">What will guests have?</label>
+        <select class="form-control">
+          <option value="entire">Entire Place</option>
+          <option value="private">Private Room</option>
+          <option value="shared">Shared Room</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="text-muted">Is this set up as a designated guest space?</label>
+        <div>
+          <input type="radio" name="guest_space" value="true"> Yes, it's primarily set up for guests
+          <br>
+          <input type="radio" name="guest_space" value="false"> No, I keep my personal belongings here
+        </div>
+      </div>
+      <button class="btn btn-default" type="button" (click)="back1()">Go Back</button>
+      <button class="btn btn-default" type="button" (click)="view3()">Next</button>
+    </div>
+    <div *ngIf="form3Visible==true">
+      <h3>
+        <small class="text-muted">Step 1</small>
+      </h3>
+      <h3>How many guests can your place accomodate?</h3>
+      Guests <button type="button" class="btn btn-default" (click)="decreaseGuests()">-</button><input class="quantity" type="text" name="quantity" value="1"/><button type="button" class="btn btn-default" (click)="increaseGuests()">+</button>
+ 
+    </div>
   </form>
 </div>

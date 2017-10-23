@@ -22,3 +22,6 @@
 .button-included[_ngcontent-c2] input[_ngcontent-c2]{
     border-radius: 5px;
 }
+#regModal{
+    overflow: scroll;
+}
