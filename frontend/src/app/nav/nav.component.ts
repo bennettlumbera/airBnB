@@ -32,6 +32,7 @@ export class NavComponent implements OnInit {
 
   }
 
+  
   private myDateRangePickerOptions: IMyDrpOptions = {
     dateFormat: 'mmm dd yyyy',
     disableUntil: {
@@ -129,25 +130,35 @@ endDate: null};
         
       }
    
-    
-      attemptedUser = {
-        email: '',
-        password: ''
-      }
-    
-      loginError;
+        
+      loginError = [];
     
       loginAttempt() {
         console.log("HIT LOGIN AT COMPONENT.TS")
-        this._userService.loginAttempt(this.attemptedUser)
-          .then(resData => {
-            if (resData.error) {
-              this.loginError = resData.error;
+        this._userService.loginAttempt(this.user)
+          .then(data => {
+            console.log("DATA COMING BACK FROM SERVER")
+            console.log(data['email'])
+            console.log(data['password'])
+            
+            if (data['email']) {
+              this.loginError.push("This email doesn't exist on our records.")
+            }
+            else if (data['password']) {
+              this.loginError.push("Password doesn't match records.")
             } else {
               // this.currUser = resData;
               this._router.navigateByUrl('/');
             }
-          }).catch(err => console.log(err));
+          }).catch(err => console.log(err))
+          // .then(resData => {
+          //   if (resData.error) {
+          //     this.loginError = resData.error;
+          //   } else {
+          //     // this.currUser = resData;
+          //     this._router.navigateByUrl('');
+          //   }
+          // }).catch(err => console.log(err));
     
       }
 

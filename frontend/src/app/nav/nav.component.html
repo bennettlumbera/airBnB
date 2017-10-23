@@ -49,16 +49,25 @@
           </button>
         </div>
         <div class="modal-body">
-          <form (submit)="loginAttempt()">
+          <form #loginForm="ngForm" (submit)="loginAttempt()">
             <div class="form-group">
               <label>Email</label>
-              <input type="text" name="email" class="form-control">
-            </div>
+              <input type="text" name="email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" class="form-control" [(ngModel)]="user.email" #email="ngModel">
+              <span *ngIf="email.errors">
+                <p *ngIf="email.errors.required" class="error"> Please enter an email</p>
+                <p *ngIf="email.errors.pattern" class="error">Invalid format</p>
+              </span>
+              <p *ngFor="let err of loginError" class="error">{{ err }}</p>
+            </div> 
             <div class="form-group">
               <label>Password</label>
-              <input type="password" name="password" class="form-control">
+              <input type="password" name="password" required minlength="7" maxlength="18" class="form-control" [(ngModel)]="user.password" #password="ngModel">
+              <span *ngIf="password.errors">
+                <p *ngIf="password.errors.required" class="error">Please enter a password</p>
+                <p *ngIf="password.errors.minlength" class="error">Password must be at least 7 characters</p>
+              </span>
             </div>
-            <input type="submit" value="Login" class="btn btn-primary">
+            <input type="submit" value="Login" class="btn btn-primary" [disabled]="!loginForm.valid">
           </form>
         </div>
         <div class="modal-footer">
