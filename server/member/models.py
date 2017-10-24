@@ -112,9 +112,9 @@ class UserManager(models.Manager):
             valid = False
         if valid == True:
             user = User.objects.filter(email=user_info['email'])[0]
-            return {'user': user}
+            return {'user' : user}
         else:
-            return {'messages': messages}
+            return {'messages' : messages}
 
 
 class User(models.Model):

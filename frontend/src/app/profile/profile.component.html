@@ -1,3 +1,11 @@
-<p>
-  profile works!
-</p>
+<h2>Edit Profile</h2>
+<div *ngIf="user">
+  <label for="firstName">First Name</label>
+  <input type="text" value="{{user.first_name}}">
+  <label for="lastName">Last Name</label>
+  <input type="text" value="{{user.last_name}}">
+  <label for="email">Email Address</label>
+  <input type="text" value="{{user.email}}">
+  <label for="birthday">Birthday</label>
+  <input type="text" value="{{user.birthday}}">
+</div>

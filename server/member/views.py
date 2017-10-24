@@ -49,3 +49,14 @@ def login(request):
         return HttpResponse(serializers.serialize('json', loggedInUser), content_type = 'application/json')
     else:
         return JsonResponse(login['messages'])    
+
+def logout(request):
+    try:
+        del request.session['user_id']
+    except KeyError:
+        return HttpResponse("You're logged out.")
+
+def showProfile(request):
+    print "Request" 
+    user = User.objects.filter(id = request.session["user_id"])
+    return HttpResponse(serializers.serialize('json', user), content_type = 'application/json')
