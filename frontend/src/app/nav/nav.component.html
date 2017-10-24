@@ -30,21 +30,22 @@
   <a [routerLink]="['/host/register']">Become a Host</a>
   <a href="">Trips</a>
   <a href="">Messages</a>
-  <a href="" data-toggle="modal" data-target="#loginModal">
-    Login
-  </a>
+  <div *ngIf="isLoggedIn()">
+      <a [routerLink]="[ '/users/edit/' + user._id ]">Edit Your Profile</a>
+      <a href="">Logout</a>  
+  </div>
+  <div *ngIf="!isLoggedIn()">
+    <a href="" data-toggle="modal" data-target="#loginModal">Login</a>
+  </div>
 </nav>
 
-
 <div class="container">
-
-
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button #loginInput type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
