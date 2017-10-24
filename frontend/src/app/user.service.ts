@@ -10,6 +10,8 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 
+  currUserId = null
+
   server_route = 'http://127.0.0.1:8000/'
   constructor(private _http: Http) { }
   regAttempt(user) {
@@ -37,9 +39,19 @@ export class UserService {
   // }  
   
   showUser(user) {
-    return this._http.get(this.server_route + 'api/users/profile', user)
+    return this._http.get(this.server_route + 'api/users/profile' + user)
       .map(data => data.json())
       .toPromise();
+  }
+
+  showCurrUser() {
+    return this._http.get(this.server_route + 'api/users/profile/' + this.currUserId)
+      .map(data => data.json())
+      .toPromise();
+  }
+
+  setCurrUser(userId) {
+    this.currUserId = userId
   }
 
 }

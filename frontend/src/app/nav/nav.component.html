@@ -31,7 +31,7 @@
   <a href="">Trips</a>
   <a href="">Messages</a>
   <div *ngIf="isLoggedIn()">
-      <a [routerLink]="[ '/users/edit/' + user._id ]">Edit Your Profile</a>
+      <a [routerLink]="[ '/users/edit/' + currUser.id ]">Edit Your Profile</a>
       <a href="">Logout</a>  
   </div>
   <div *ngIf="!isLoggedIn()">

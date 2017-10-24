@@ -97,11 +97,11 @@ endDate: null};
           this._userService.regAttempt(this.user)
             .then(data => {
               console.log("DATA RESPONSE COMING BACK FROM SERVER")
-              console.log(data['email'])
-              if(data['email']){
+              console.log(data[0]['email'])
+              if(data[0]['email']){
                 this.regErrors.push("An account is already registered to this email")
               } else {
-                  this.currUser = data;
+                  this.currUser = data[0];
                   let event = new MouseEvent('click', {bubbles: true});
                   this._renderer.invokeElementMethod(
                   this.fileInput.nativeElement, 'dispatchEvent', [event]
@@ -128,23 +128,30 @@ endDate: null};
         console.log(this.loginError);
         this._userService.loginAttempt(this.user)
           .then(data => {
+
             console.log("DATA COMING BACK FROM SERVER");
-            console.log(data['email']);
-            console.log(data['password']);
+            console.log(data[0]['email']);
+            console.log(data[0]['password']);
             console.log(this.loginError);
             
-            if (data['email']) {
+            if (data[0]['email']) {
               this.loginError.push("This email doesn't exist on our records.");
             }
-            else if (data['password']) {
+            else if (data[0]['password']) {
               this.loginError.push("Password doesn't match records.");
             } else {
-              this.currUser = data; 
+              this.currUser = data[0]['fields']; 
+              this.currUser.id = data[0].pk;
               console.log(this.currUser);
               let event = new MouseEvent('click', {bubbles: true});
               this._renderer.invokeElementMethod(
                 this.loginInput.nativeElement, 'dispatchEvent', [event]
               )}
+
+            // Set currUser id to service
+            console.log("in showUser in nav.comp")
+            console.log(data[0])
+            this._userService.setCurrUser(data[0].pk);
             this._router.navigateByUrl('');
           }).catch(err => console.log(err))
           // .then(resData => {

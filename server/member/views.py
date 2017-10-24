@@ -44,19 +44,27 @@ def login(request):
         request.session["user_id"] = login["user"].id
         print request.session["user_id"]
         loggedInUser = User.objects.filter(id=request.session["user_id"])
-        print type(loggedInUser)
-        print loggedInUser
+        print "logged in user query login"
+        print loggedInUser[0].id
         return HttpResponse(serializers.serialize('json', loggedInUser), content_type = 'application/json')
     else:
         return JsonResponse(login['messages'])    
 
 def logout(request):
+    print "IN LOG OUT"
     try:
         del request.session['user_id']
     except KeyError:
         return HttpResponse("You're logged out.")
 
-def showProfile(request):
-    print "Request" 
-    user = User.objects.filter(id = request.session["user_id"])
+def showProfile(request, id):
+    print "Request in show profile views.py" 
+    user = User.objects.filter(id = id)
+    print user[0]
     return HttpResponse(serializers.serialize('json', user), content_type = 'application/json')
+
+# def showCurrProfile(request):
+#     print "Show Profile"
+#     user = User.objects.filter(id=11)
+#     return HttpResponse(serializers.serialize('json', user), content_type = 'application/json')
+    

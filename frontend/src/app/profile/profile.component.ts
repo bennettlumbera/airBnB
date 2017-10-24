@@ -11,14 +11,21 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  user: {}
+
+  constructor(private _route: ActivatedRoute, private _userService: UserService){
+   
   
-  constructor(private _route: ActivatedRoute){
-    this._route.paramMap.subscribe( params => {
-      console.log("User ID is:");
-      console.log(params.get('id'));
-    })
+  }
+  ngOnInit() {
+    this.showUser();
   }
 
-  ngOnInit() {}
+  showUser() {
+    this._userService.showCurrUser()
+      .then(data => {
+        this.user = data[0]['fields']
+      })
+  }
   
 }

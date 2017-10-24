@@ -7,5 +7,7 @@ urlpatterns = [
     # url(r'^all$', getUsers, name='allUsers'),
     url(r'^login$', login, name='login'),
     # url(r'^logout$', logout, name='logout'),
-    url(r'^profile/(?P<id>\d+)$', showProfile, name='showProfile')
+    url(r'^profile/(?P<id>\d+)$', showProfile, name='showProfile'),
+    # url(r'^currprofile$', showCurrProfile, name='showCurrProfile')
+    
 ]
