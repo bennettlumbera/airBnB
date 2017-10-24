@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "angular2-google-maps": "^0.17.0",
+    "angular4-files-upload": "^1.0.2",
     "core-js": "^2.4.1",
     "mydaterangepicker": "^4.1.9",
     "ng2-daterange-picker": "^1.0.6",

@@ -20,10 +20,8 @@ import { AgmCoreModule } from '@agm/core';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 
 
-// import { RequestOptions } from '@angular/http';
-// import {HttpClientModule} from '@angular/common/http';
-// import { HttpHeaders } from '@angular/common/http';
-// import {Http, Headers, RequestOptions} from '@angular/http';
+
+
 
 
 
@@ -38,7 +36,8 @@ import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
     PropertyComponent,
     BookingRequestComponent,
     ProfileComponent,
-    HostFormComponent
+    HostFormComponent,
+
   ],
   imports: [
     ReactiveFormsModule,
@@ -53,6 +52,7 @@ import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
       
          }),
     Ng4GeoautocompleteModule.forRoot(),
+
 
   ],
 

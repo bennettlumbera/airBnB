@@ -4,7 +4,7 @@
     <div class="form-row" id="searchRow">
       <div class="col" id="navBarSearchForm">
         <!-- <input id="navBarSearchForm" type="text" class="form-control" placeholder="Search"> -->
-        <ng4geo-autocomplete  id="ng4geo"  (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>
+        <ng4geo-autocomplete id="ng4geo" (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>
       </div>
       <div class="col">
         <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions" [(ngModel)]="model" required> </my-date-range-picker>
@@ -75,13 +75,13 @@
           <button id="signUp" type="button" data-dismiss="modal" class="btn btn-primary" data-toggle="modal" data-target="#regModal">
             Sign Up
           </button>
-          
+
         </div>
       </div>
     </div>
   </div>
 
-  <div  class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -125,7 +125,7 @@
               </div>
               <div class="col form-group">
                 <label>Date of Birth</label>
-                <input #dateInput id="datefield" type="date" name="DOB" class="form-control" required [(ngModel)]="user.dob" #dob="ngModel">
+                <input max="2013-12-25" id="datefield" type="date" name="DOB" class="form-control" required [(ngModel)]="user.dob" #dob="ngModel">
                 <span *ngIf="dob.errors">
                   <p *ngIf="dob.errors.required" class="error">Please enter your date of birth</p>
                 </span>
@@ -430,7 +430,7 @@
                 </span>
               </div>
             </div>
-            <input type="submit"  value="submit" class="btn btn-primary" [disabled]="!userForm.valid">
+            <input type="submit" value="submit" class="btn btn-primary" [disabled]="!userForm.valid">
             <button id="back" type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">
               Back to Login
             </button>
@@ -440,4 +440,8 @@
       </div>
     </div>
   </div>
+
+
 </div>
+
+

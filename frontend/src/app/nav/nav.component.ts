@@ -23,7 +23,10 @@ export class NavComponent implements OnInit {
   currYear = (new Date()).getFullYear();
   currMonth = (new Date()).getMonth();
   currDay = (new Date()).getDate();
-  todaysDate = this.currYear +'/'+this.currMonth+'/'+this.currDay
+  todaysDate = this.currMonth+'/'+this.currDay+'/'+ this.currYear;
+
+  
+
 
 
   autoCompleteCallback1(selectedData:any) {
@@ -53,7 +56,7 @@ endDate: null};
     constructor(private _userService: UserService, private _router: Router, private _propertyService: PropertyService, private _renderer: Renderer) { }
   
     ngOnInit() {
-      // this.visible = true
+      
     }
       user = new User();
       currUser = null;
@@ -79,6 +82,10 @@ endDate: null};
 
       registrationAttempt() {
         console.log("HIT REG ATTEMPT")
+        console.log(this.todaysDate)
+        console.log(typeof(this.todaysDate))
+
+  
         // this.regErrors = [];
         // this.checkPassword();
         // this.validateEmail(this.user.email);
@@ -107,8 +114,11 @@ endDate: null};
               //   // this.currUser = data;
               //   this._router.navigateByUrl('/choose_topics');             
               // }
-              this._router.navigateByUrl('/host/register')  
-            }).catch(err => console.log(err));        
+              this._router.navigateByUrl('/')
+              
+            })
+            .catch(err => console.log(err));      
+        
       }
    
       loginError = [];
@@ -166,4 +176,8 @@ endDate: null};
       search(){
         this._propertyService.searchProperties(this.searchParams)
       }
+
+
+
+
     }
