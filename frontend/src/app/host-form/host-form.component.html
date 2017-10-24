@@ -97,14 +97,6 @@
           <option value="shared">Shared Room</option>
         </select>
       </div>
-      <div class="form-group">
-        <label class="text-muted">Is this set up as a designated guest space?</label>
-        <div>
-          <input type="radio" name="guest_space" value="true"> Yes, it's primarily set up for guests
-          <br>
-          <input type="radio" name="guest_space" value="false"> No, I keep my personal belongings here
-        </div>
-      </div>
       <button class="btn btn-default" type="button" (click)="back1()">Go Back</button>
       <button class="btn btn-default" type="button" (click)="view3()">Next</button>
     </div>
@@ -112,9 +104,101 @@
       <h3>
         <small class="text-muted">Step 1</small>
       </h3>
-      <h3>How many guests can your place accomodate?</h3>
-      Guests <button type="button" class="btn btn-default" (click)="decreaseGuests()">-</button><input class="quantity" type="text" name="quantity" value="1"/><button type="button" class="btn btn-default" (click)="increaseGuests()">+</button>
- 
+      <div class="form-group">
+        <h3>How many guests can your place accomodate?</h3>
+        Guests
+        <button type="button" class="btn btn-default" (click)="decreaseGuests()">-</button>
+        <input class="quantity" type="text" name="quantity" value="1" />
+        <button type="button" class="btn btn-default" (click)="increaseGuests()">+</button>
+        <h3>How many bedrooms can guests use?</h3>
+        <select class="form-control" name="rooms">
+          <option value="Studio">Studio</option>
+          <option value="1">1 bedroom</option>
+          <option value="2">2 bedrooms</option>
+          <option value="3">3 bedrooms</option>
+          <option value="4">4 bedrooms</option>
+          <option value="5">5 bedrooms</option>
+          <option value="6">6 bedrooms</option>
+          <option value="7">7 bedrooms</option>
+          <option value="8">8 bedrooms</option>
+          <option value="9">9 bedrooms</option>
+          <option value="10">10 bedrooms</option>
+        </select>
+      </div>
+      <button class="btn btn-default" type="button" (click)="back2()">Go Back</button>
+      <button class="btn btn-default" type="button" (click)="view4()">Next</button>
+    </div>
+    <div *ngIf="form4Visible===true">
+      <h3>
+        <small class="text-muted">Step 1</small>
+      </h3>
+      <div class="form-group">
+        <h2>How many bathrooms?</h2>
+        Bathrooms
+        <select class="form-control" name="bathrooms">
+          <option value="1">1 bathroom</option>
+          <option value="1.5">1.5 bathrooms</option>
+          <option value="2">2 bathrooms</option>
+          <option value="2.5">2.5 bathrooms</option>
+          <option value="3">3 bathrooms</option>
+          <option value="3.5">3.5 bathrooms</option>
+          <option value="4">4 bathrooms</option>
+          <option value="4.5">4.5 bathrooms</option>
+          <option value="5">5 bathrooms</option>
+          <option value="6">5.5 bathrooms</option>
+          <option value="6.5">6 bathrooms</option>
+          <option value="7">7 bathrooms</option>
+          <option value="8">7.5 bathrooms</option>
+          <option value=8.5>8.5 bathrooms</option>
+          <option value="9">9 bathrooms</option>
+          <option value="9.5">9.5 bathrooms</option>
+          <option value="10">10 bathrooms</option>
+        </select>
+        <button class="btn btn-default" type="button" (click)="back3()">Go Back</button>
+        <button class="btn btn-default" type="button" (click)="view5()">Next</button>
+      </div>
+    </div>
+    <div *ngIf="form5Visible===true">
+      <h3>
+        <small class="text-muted">Step 1</small>
+      </h3>
+      <div class="form-group">
+        <h2>What's your full address?</h2>
+        <ng4geo-autocomplete id="ng4geo" (componentCallback)="autoCompleteCallback2($event)"></ng4geo-autocomplete>
+      </div>
+      <button class="btn btn-default" type="button" (click)="back4()">Go Back</button>
+      <button class="btn btn-default" type="button" (click)="view6()">Next</button>
+    </div>
+    <div *ngIf="form6Visible===true">
+      <h3>
+        <small class="text-muted">Step 2</small>
+      </h3>
+      <div class="form-group">
+        <h2>Upload photos</h2>
+        <input class="btn btn-info" type="file" name="pic" accept="image/*">
+      </div>
+      <button class="btn btn-default" type="button" (click)="back5()">Go Back</button>
+      <button class="btn btn-default" type="button" (click)="view7()">Next</button>
+    </div>
+    <div *ngIf="form7Visible===true">
+      <h3>
+        <small class="text-muted">Step 2</small>
+      </h3>
+      <div id="form-group">
+        <label>Name your place</label>
+        <input name="title"class="form-control" type="text">
+        <label>Add a description</label>
+        <textarea class="form-control"  name="description">max 500 characters</textarea>
+      </div>
+    </div>
+    <div *ngIf="form8Visible===true">
+        <h3>
+            <small class="text-muted">Step 2</small>
+          </h3>
+          <div class="form-group">
+            <label>Price per night</label>
+            <input class="form-control" type="text" name="price">
+          </div>
     </div>
   </form>
 </div>
